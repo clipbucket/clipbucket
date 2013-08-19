@@ -39,7 +39,7 @@ class CBTemplate {
         $Smarty->type = $type;
     }
 
-    public static public static function assign($var, $value) {
+    public static function assign($var, $value) {
         global $Smarty;
         if (!isset($Smarty)) {
             CBTemplate::create();
