@@ -84,7 +84,7 @@ class cbsearch
 	/**
 	 * INITIATION SEARCH
 	 */
-	function init_search($type='video')
+	public static function init_search($type='video')
 	{
 		global $Cbucket;
 		if($Cbucket->search_types[$type])
