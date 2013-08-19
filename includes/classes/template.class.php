@@ -12,7 +12,7 @@ class CBTemplate {
         }
     }
 
-    function create() {
+    public static function create() {
         global $Smarty;
         $Smarty = new Smarty();
         $Smarty->compile_check = true;
@@ -23,7 +23,7 @@ class CBTemplate {
         return true;
     }
     
-    function setCompileDir($dir_name) {
+    public static function setCompileDir($dir_name) {
         global $Smarty;
         if (!isset($Smarty)) {
             CBTemplate::create();
@@ -31,7 +31,7 @@ class CBTemplate {
         $Smarty->compile_dir = $dir_name;
     }
 
-    function setType($type) {
+    public static function setType($type) {
         global $Smarty;
         if (!isset($Smarty)) {
             CBTemplate::create();
@@ -39,7 +39,7 @@ class CBTemplate {
         $Smarty->type = $type;
     }
 
-    function assign($var, $value) {
+    public static public static function assign($var, $value) {
         global $Smarty;
         if (!isset($Smarty)) {
             CBTemplate::create();
@@ -47,7 +47,7 @@ class CBTemplate {
         $Smarty->assign($var, $value);
     }
 
-    function setTplDir($dir_name = null) {
+    public static function setTplDir($dir_name = null) {
         global $Smarty;
         if (!isset($Smarty)) {
             CBTemplate::create();
@@ -59,7 +59,7 @@ class CBTemplate {
         }
     }
 
-    function setModule($module) {
+    public static function setModule($module) {
         global $Smarty;
         if (!isset($Smarty)) {
             CBTemplate::create();
@@ -68,7 +68,7 @@ class CBTemplate {
         $Smarty->type  = "module";
     }
 
-    function setTheme($theme) {
+    public static function setTheme($theme) {
         global $Smarty;
         if (!isset($Smarty)) {
             CBTemplate::create();
@@ -79,7 +79,7 @@ class CBTemplate {
         $Smarty->type         = "theme";
     }
 
-    function getTplDir() {
+    public static function getTplDir() {
         global $Smarty;
         if (!isset($Smarty)) {
             CBTemplate::create();
@@ -87,7 +87,7 @@ class CBTemplate {
         return $Smarty->template_dir;
     }
 
-    function display($filename) {
+    public static function display($filename) {
         global $Smarty;
         if (!isset($Smarty)) {
             CBTemplate::create();
@@ -95,7 +95,7 @@ class CBTemplate {
         $Smarty->display($filename);
     }
 
-    function fetch($filename) {
+    public static function fetch($filename) {
         global $Smarty;
         if (!isset($Smarty)) {
             CBTemplate::create();
@@ -103,7 +103,7 @@ class CBTemplate {
         return $Smarty->fetch($filename);
     }
     
-    function getVars() {
+    public static function getVars() {
         global $Smarty;
         if (!isset($Smarty)) {
             CBTemplate::create();
@@ -114,7 +114,7 @@ class CBTemplate {
 	/**
 	 * Function used to get available templates
 	 */
-	function get_templates()
+	public static function get_templates()
 	{
 		$dir = STYLES_DIR;
 		//Scaning Dir
@@ -141,7 +141,7 @@ class CBTemplate {
 		return $this->get_templates();
 	}
 	
-	function get_template_details($temp,$file='template.xml')
+	public static function get_template_details($temp,$file='template.xml')
 	{
 		$file = STYLES_DIR.'/'.$temp.'/template.xml';
 		if(file_exists($file))
@@ -182,7 +182,7 @@ class CBTemplate {
 	/**
 	 * Function used to get template thumb
 	 */
-	function get_preview_thumb($template)
+	public static function get_preview_thumb($template)
 	{
 		$path = TEMPLATEFOLDER.'/'.$template.'/images/preview.';
 		$exts = array('png','jpg','gif');
@@ -231,7 +231,7 @@ class CBTemplate {
 	/**
 	 * Function used to get list of template file frrom its layout and styles folder
 	 */
-	function get_template_files($template,$type=NULL)
+	public static function get_template_files($template,$type=NULL)
 	{
 		switch($type)
 		{
