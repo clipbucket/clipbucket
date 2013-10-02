@@ -179,7 +179,7 @@ class ffmpeg
 		$use_vf = config('use_ffmpeg_vf');
 		if($use_vf=='no')
 		{
-		$opt_av .= " -s {$width}x{$height} -aspect $ratio -padtop $pad_top -padbottom $pad_bottom -padleft $pad_left -padright $pad_right ";
+		$opt_av .= " -s {$width}x{$height} -aspect $ratio -padbottom $pad_bottom -padleft $pad_left -padright $pad_right ";
 		}else
 		{
 			$opt_av .= "-s {$width}x{$height} -aspect  $ratio -vf  pad=0:0:0:0:black";
