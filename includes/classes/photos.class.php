@@ -294,6 +294,7 @@ class CBPhotos
 	function get_photos($p)
 	{
 		global $db;
+		$cbsearch = new cbsearch();
 		$tables = "photos,users";
 		
 		$order = $p['order'];
@@ -455,7 +456,7 @@ class CBPhotos
 		if($p['show_related'])
 		{
 			$cond = "MATCH(".tbl('photos.photo_title,photos.photo_tags').")";
-			$cond .= " AGAINST ('".cbsearch::set_the_key($p['title'])."' IN BOOLEAN MODE)";
+			$cond .= " AGAINST ('".$cbsearch->set_the_key($p['title'])."' IN BOOLEAN MODE)";
 			if($p['exclude'])
 			{
 				if($cond != "")
@@ -483,7 +484,7 @@ class CBPhotos
 			// We found nothing from TITLE of Photos, let's try TAGS
 			if($db->num_rows == 0)
 			{
-				$tags = cbsearch::set_the_key($p['tags']);
+				$tags = $cbsearch->set_the_key($p['tags']);
 				$tags = str_replace('+','',$tags);
 
 				$cond = "MATCH(".tbl('photos.photo_title,photos.photo_tags').")";

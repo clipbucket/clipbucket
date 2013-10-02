@@ -146,7 +146,8 @@ class ffmpeg
 		elseif(isset($i['video_codec']))
 			$opt_av .= " -vcodec ".$i['video_codec'];
 		if($p['video_codec'] == 'libx264')
-			$opt_av .= " -vpre normal ";
+			//$opt_av .= " -vpre normal ";
+			$opt_av .= " -preset medium -crf 23 ";
 			
 		# video rate
 		if($p['use_video_rate'])

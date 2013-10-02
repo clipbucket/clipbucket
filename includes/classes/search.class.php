@@ -428,7 +428,7 @@ class cbsearch
 	/**
 	 * Function used to set the key
 	 */
-	function set_the_key($string=null)
+	public function set_the_key($string=null)
 	{
 		if(!$string)
 		$string = $this->key;

@@ -346,7 +346,7 @@ class formObj
 	* @param name with brackets
 	* return name without brackets
 	*/
-	function rmBrackets($string)
+	public static function rmBrackets($string)
 	{
 		$string = preg_replace('/\[\]/','',$string);
 		return $string;
