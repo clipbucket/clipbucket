@@ -1,6 +1,8 @@
 cache/*
+.buildpath
+.project
+files/logs/*
+files/temp/*
 files/photos/*
-files/temp/install.me
 includes/clipbucket.php
 includes/dbconnect.php
-.buildpath
