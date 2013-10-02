@@ -57,7 +57,7 @@ $query = mysql_query("SELECT * FROM ".tbl("phrases")." ORDER BY text ASC");
 <td align="left" bgcolor="#000000">Sentence
 </td>
 </tr>
-<?
+<?php
 while($data=mysql_fetch_array($query))
 {
 ?>
@@ -67,7 +67,7 @@ while($data=mysql_fetch_array($query))
 </td>
 </tr>
 
-<?
+<?php
 }
 ?>
 </table>

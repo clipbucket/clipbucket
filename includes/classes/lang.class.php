@@ -261,7 +261,7 @@ class language
 			header("Cache-Control: private",false); // required for certain browsers 
 			header("Content-type: application/force-download");
 			header("Content-Disposition: attachment; filename=\"cb_lang_".$lang_details['language_code'].".xml\""); 
-			echo '<?xml version="1.0" encoding="UTF-8"?>';
+			echo '<?phpxml version="1.0" encoding="UTF-8"?>';
 			?>
 			<clipbucket_language>
 				<name><?php echo $lang_details['language_name']?></name>

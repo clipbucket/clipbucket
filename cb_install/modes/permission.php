@@ -22,7 +22,7 @@ properly
 	<dd>
 		<?php echo msg_arr($permission);?>
 	</dd>
-	<?
+	<?php
 	}
 	?>
 

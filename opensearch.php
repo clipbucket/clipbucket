@@ -7,7 +7,7 @@
 **********************************************************
 */
 require 'includes/config.inc.php';
-'<?xml version="1.0" encoding="utf-8"?>' . "\n";
+'<?phpxml version="1.0" encoding="utf-8"?>' . "\n";
 
 header ("Content-type: text/xml; charset=utf-8");
 ?>

@@ -83,7 +83,7 @@ class y_axis_base
 	/**
 	 * Pass in some text for each label. This can contain magic variables "#val#" which
 	 * will get replaced with the value for that Y axis label. Useful for:
-	 * - "£#val#"
+	 * - "ï¿½#val#"
 	 * - "#val#%"
 	 * - "#val# million"
 	 * 
