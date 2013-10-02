@@ -3,3 +3,4 @@ files/photos/*
 files/temp/install.me
 includes/clipbucket.php
 includes/dbconnect.php
+.buildpath
