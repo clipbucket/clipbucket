@@ -12,7 +12,7 @@ $db->update(tbl("users"),array
 //Login user
 $userquery->login_user(post('username'),post('password'))
 
-?><?=msg_arr(array('msg'=>'Admin details have been updated'))?>
+?><?php echo msg_arr(array('msg'=>'Admin details have been updated'))?>
 <h2>Website basic configurations</h2>
 here you can set basic configuration of your website, you can change them later by going to Admin area &gt; Website Configurations
 
@@ -33,7 +33,7 @@ here you can set basic configuration of your website, you can change them later 
     
     <div class="field">
     <label for="baseurl">Website URL</label>
-    <input name="baseurl" type="text" id="baseurl" class="br5px" value="<?=BASEURL?>"><br />
+    <input name="baseurl" type="text" id="baseurl" class="br5px" value="<?php echo BASEURL?>"><br />
 	without trailing slash '/'
     </div>
     
@@ -41,7 +41,7 @@ here you can set basic configuration of your website, you can change them later 
   <input type="hidden" name="mode" value="register" />
      <p>
      Please read <a href="http://docs.clip-bucket.com/clipbucket-v2/how-to-setup-clipbucket-admin-area" target="_blank"><strong>this documentation</strong></a> for complete website configurations guide </p>
-   <?=button('Save and Continue',' onclick="$(\'#installation\').submit()" ');?>
+   <?php echo button('Save and Continue',' onclick="$(\'#installation\').submit()" ');?>
 </form>
 
 </p>

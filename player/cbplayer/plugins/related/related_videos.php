@@ -17,9 +17,9 @@ if(!$related_videos)
 	foreach($related_videos as $video):
 	?>
     <item>
-        <title><?=$video['title']?></title>
-        <link><?=videoLink($video);?></link>
-        <media:thumbnail url="<?=get_thumb($video)?>" height="90" width="120" time="<?=setTime($video['duration'])?>"/>
+        <title><?php echo $video['title']?></title>
+        <link><?php echo videoLink($video);?></link>
+        <media:thumbnail url="<?php echo get_thumb($video)?>" height="90" width="120" time="<?php echo setTime($video['duration'])?>"/>
     </item>
     <?php
 	endforeach;

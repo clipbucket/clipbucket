@@ -11,15 +11,15 @@ $db->update(tbl("config"),array("value"),array(now())," name='date_updated' ");
 if(file_exists(BASEDIR.'/files/temp/install.me'))
 	unlink(BASEDIR.'/files/temp/install.me');
 ?>
-<h2>Your Clipbucket has been successfully upgraded to <?=VERSION?></h2>
+<h2>Your Clipbucket has been successfully upgraded to <?php echo VERSION?></h2>
 <p>
 <div class="errorDiv br5px" id="dbresult" style="">
-<?=msg_arr(array('err'=>'Please delete cb_install directory'))?></div>
+<?php echo msg_arr(array('err'=>'Please delete cb_install directory'))?></div>
 <div align="center" style="margin-top:10px"><form name="installation" method="post" id="installation">
 
     <input type="hidden" name="mode" value="finish" />
-    <?=button("Continue to Admin Area",' onclick="window.location=\''.BASEURL.'/admin_area\'" ');?>
-    <?=button("Continue to ".config('site_title'),' onclick="window.location=\''.BASEURL.'\'" ');?>
+    <?php echo button("Continue to Admin Area",' onclick="window.location=\''.BASEURL.'/admin_area\'" ');?>
+    <?php echo button("Continue to ".config('site_title'),' onclick="window.location=\''.BASEURL.'\'" ');?>
   
 </form></div>
 

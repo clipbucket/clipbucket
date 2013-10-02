@@ -8,28 +8,28 @@ Clipbucket requires following modules in order to work properly, we are performi
 <dl>
     <dt>PHP</dt>
     	<?php $php_ver = check_module('php'); ?>
-    	<dd><?=msg_arr($php_ver);?></dd>
+    	<dd><?php echo msg_arr($php_ver);?></dd>
     <dt>FFMPEG</dt>
     	<?php $ffmpeg_ver = check_module('ffmpeg'); ?>
-    <dd><?=msg_arr($ffmpeg_ver);?></dd>
+    <dd><?php echo msg_arr($ffmpeg_ver);?></dd>
     <dt>FLVtool2</dt>
          <?php $flvtool2_ver = check_module('flvtool2'); ?>
-    	<dd><?=msg_arr($flvtool2_ver);?></dd>
+    	<dd><?php echo msg_arr($flvtool2_ver);?></dd>
         
     <dt>MP4Box</dt>
     	<?php $mp4boxver = check_module('mp4box'); ?>
-    	<dd><?=msg_arr($mp4boxver);?></dd>
+    	<dd><?php echo msg_arr($mp4boxver);?></dd>
     <dt>cURL</dt>
     	<?php $curlver = check_module('curl'); ?>
-    	<dd><?=msg_arr($curlver);?></dd>
+    	<dd><?php echo msg_arr($curlver);?></dd>
     <dt>PHPShield</dt>
     	<?php $phpshield = check_module('phpshield'); ?>
-    	<dd><?=msg_arr($phpshield);?></dd>
+    	<dd><?php echo msg_arr($phpshield);?></dd>
 </dl>
 <p></p>
 
 
 <form name="installation" method="post" id="installation">
 	<input type="hidden" name="mode" value="permission" />
-    <div style="padding:10px 0px" align="right"><?=button('Continue To Next Step',' onclick="$(\'#installation\').submit()" ');?></div>
+    <div style="padding:10px 0px" align="right"><?php echo button('Continue To Next Step',' onclick="$(\'#installation\').submit()" ');?></div>
 </form>

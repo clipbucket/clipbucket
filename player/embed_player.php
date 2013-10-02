@@ -43,7 +43,7 @@ if(!$vdetails)
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<title><?=$vdetails['title']?></title>
+<title><?php echo $vdetails['title']?></title>
 <?php
 Template(STYLES_DIR.'/global/head.html',false);
 ?>

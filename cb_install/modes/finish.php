@@ -7,12 +7,12 @@ if(file_exists(BASEDIR.'/files/temp/install.me'))
 <div id="fb-root"></div><script src="http://connect.facebook.net/en_US/all.js#appId=152608291474175&amp;xfbml=1"></script><fb:like href="http://www.facebook.com/ClipBucket" send="true" width="450" show_faces="true" font=""></fb:like>
 
 <div class="errorDiv br5px" id="dbresult" style="">
-<?=msg_arr(array('err'=>'Please delete cb_install directory'))?></div>
+<?php echo msg_arr(array('err'=>'Please delete cb_install directory'))?></div>
 <div align="center" style="margin-top:10px"><form name="installation" method="post" id="installation">
 
     <input type="hidden" name="mode" value="finish" />
-    <?=button("Continue to Admin Area",' onclick="window.location=\''.BASEURL.'/admin_area\'" ');?>
-     <?=button("Continue to ".config('site_title'),' onclick="window.location=\''.BASEURL.'\'" ');?>
+    <?php echo button("Continue to Admin Area",' onclick="window.location=\''.BASEURL.'/admin_area\'" ');?>
+     <?php echo button("Continue to ".config('site_title'),' onclick="window.location=\''.BASEURL.'\'" ');?>
   
 </form></div>
 

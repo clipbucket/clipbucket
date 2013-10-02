@@ -72,6 +72,6 @@ echo "<br>".msg_arr($arr);
     
     <input type="hidden" name="mode" value="sitesettings" />
      
-   <?=button('Save and Continue',' onclick="$(\'#installation\').submit()" ');?>
+   <?php echo button('Save and Continue',' onclick="$(\'#installation\').submit()" ');?>
 </form>
 </p>

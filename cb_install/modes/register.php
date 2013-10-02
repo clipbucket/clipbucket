@@ -30,8 +30,8 @@ As you have installed ClipBucket Succesffuly, we highly recommend you to registe
 
 <form name="installation" method="post" id="installation">
     <input type="hidden" name="mode" value="finish" />
-     <?=button('Skip & Finish',' onclick="$(\'#installation\').submit()" ',true);?>
-    <?=button('Register & Finish',' onclick="register(\''.$adminemail.'\',\''.urlencode(BASEURL).'\')" ');?>
+     <?php echo button('Skip & Finish',' onclick="$(\'#installation\').submit()" ',true);?>
+    <?php echo button('Register & Finish',' onclick="register(\''.$adminemail.'\',\''.urlencode(BASEURL).'\')" ');?>
     <span id="loadingReg"></span>
   
 </form>

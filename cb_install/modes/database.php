@@ -49,5 +49,5 @@ To setup ClipBucket, we need some   information on the database. You will need t
     
    
 	<input type="hidden" name="mode" value="dataimport" />
-    <div style="padding:10px 0px" align="left"><?=button('Check Connection',' onclick="dbconnect()" ');?> <span id="loading"></span></div>
+    <div style="padding:10px 0px" align="left"><?php echo button('Check Connection',' onclick="dbconnect()" ');?> <span id="loading"></span></div>
 	</form>
