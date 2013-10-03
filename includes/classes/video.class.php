@@ -808,12 +808,15 @@ class CBvideo extends CBCategory
 		
 		if($params['show_related'])
 		{
+			
+			$cbsearch = new cbsearch();
+			
 			$cond = "";
 			if($superCond)
 				$cond = $superCond." AND ";
 			
 			$cond .= "MATCH(".tbl("video.title,video.tags").") 
-			AGAINST ('".cbsearch::set_the_key($params['title'])."' IN BOOLEAN MODE) ";
+			AGAINST ('".$cbsearch->set_the_key($params['title'])."' IN BOOLEAN MODE) ";
 			if($params['exclude'])
 			{
 				if($cond!='')
@@ -830,7 +833,7 @@ class CBvideo extends CBCategory
 					$cond = $superCond." AND ";
 				//Try Finding videos via tags
 				$cond .= "MATCH(".tbl("video.title,video.tags").") 
-				AGAINST ('".cbsearch::set_the_key($params['tags'])."' IN BOOLEAN MODE) ";
+				AGAINST ('".$cbsearch->set_the_key($params['tags'])."' IN BOOLEAN MODE) ";
 				if($params['exclude'])
 				{
 					if($cond!='')
