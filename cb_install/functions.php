@@ -69,20 +69,24 @@
 			case "ffmpeg":
 			{
 				$ffmpeg_path = exec("which ffmpeg");
-				$ffmpeg_version = shell_output("$ffmpeg_path -version");
-				
-				$version = false;
-				preg_match("/SVN-r([0-9]+)/i",$ffmpeg_version,$matches);
-				if(@$matches[1])
-					$version = 'r'.$matches[1];
-				preg_match("/version ([0-9.]+)/i",$ffmpeg_version,$matches);
-				if(@$matches[1])
-					$version = $matches[1];
-				
-				if(!$version)
+				if($ffmpeg_path == '') {
 					$return['err'] = _("Unable to find ffmpeg");
-				else
-					$return['msg'] = sprintf(_("Found FFMPEG %s : %s"),$version,$ffmpeg_path);
+				} else {
+					$ffmpeg_version = shell_output("$ffmpeg_path -version");
+					
+					$version = false;
+					preg_match("/SVN-r([0-9]+)/i",$ffmpeg_version,$matches);
+					if(@$matches[1])
+						$version = 'r'.$matches[1];
+					preg_match("/version ([0-9.]+)/i",$ffmpeg_version,$matches);
+					if(@$matches[1])
+						$version = $matches[1];
+					
+					if(!$version)
+						$return['err'] = _("Unknown version of ffmpeg");
+					else
+						$return['msg'] = sprintf(_("Found FFMPEG %s : %s"),$version,$ffmpeg_path);
+				}
 			}
 			break;
 			
