@@ -75,7 +75,7 @@
 					$ffmpeg_version = shell_output("$ffmpeg_path -version");
 					
 					$version = false;
-					preg_match("/SVN-r([0-9]+)/i",$ffmpeg_version,$matches);
+					preg_match("/ffmpeg version N-([0-9]+)-g([0-9]+)/i",$ffmpeg_version,$matches);
 					if(@$matches[1])
 						$version = 'r'.$matches[1];
 					preg_match("/version ([0-9.]+)/i",$ffmpeg_version,$matches);
