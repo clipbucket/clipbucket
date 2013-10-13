@@ -14,6 +14,8 @@ require 'includes/config.inc.php';
 $pages->page_redir();
 
 $tid = $_GET['tid'];
+$tid = mysql_clean($tid);
+
 $tdetails = $cbgroup->get_topic_details($tid);
 
 if($tdetails)

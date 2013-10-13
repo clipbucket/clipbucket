@@ -13,6 +13,8 @@ require 'includes/config.inc.php';
 $pages->page_redir();
 
 $pid = $_GET['pid'];
+$pid = mysql_clean($pid);
+
 $page = $cbpage->get_page($pid);
 if($page)
 {
