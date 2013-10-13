@@ -15,6 +15,8 @@ $pages->page_redir();
 
 //Getting Video Key
 $vkey = @$_GET['v'];
+$vkey = mysql_clean($vkey);
+
 $vdo = $cbvid->get_video($vkey);
 assign('vdo',$vdo);
 if(video_playable($vdo))

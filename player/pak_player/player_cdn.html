@@ -1,0 +1,334 @@
+{literal}
+<style>
+.video_title_player{
+background-color: rgba(0, 0, 0, 0.5);
+border: 1px solid #888888;
+border-radius: 3px 3px 3px 3px;
+-moz-border-radius: 3px 3px 3px 3px;
+-webkit-border-radius: 3px 3px 3px 3px;
+color: #FFFFFF;
+cursor: pointer;
+font-family: Arial;
+font-weight: bold;
+margin: 10px;
+padding: 10px 0;
+}
+</style>
+{/literal}
+
+<div align="center" href="{if !$ytcode}{$normal_vid_file}{else}api:{$ytcode}{/if}" style="display:block;height:{$player_data.height}; background-color:#000;position:relative " id="the_Video_Player">
+
+	{if !$player_data.autoplay && $is_embedded}
+	
+	
+	<!--[if gte IE 8]> -->
+	<img src="{getThumb vdetails=$vdata size="big" num="big"}" height="100%" />
+	<!-- <![endif]-->
+
+	
+	<!--[if gte IE 8]> -->
+	<div style="position:absolute; top:20px; width:100%" align="center">
+		<img src="{$pak_player_url}/logo_new.png" alt="Play this video"  />
+	</div>
+	
+	
+	
+	<div style="position:absolute; top:{$player_data.height/2-83/2}px; width:100%;cursor:pointer" align="center">
+		<img src="{$pak_player_url}/play.png" alt="Play this video"  />
+	</div>
+	
+	
+	<div style="position:absolute; bottom:20px; width:100%" align="center">
+		<div class="video_title_player">
+			{$vdata.title}
+			<div style="font-size:12px; margin-top:5px; font-weight:normal">{$vdata.duration|setTime}</div>
+		</div>
+	</div>
+	<!-- <![endif]-->
+	
+	
+	{/if}
+</div>
+{assign var=show_ads value='yes'}
+<script language="JavaScript">
+    var pakplayer_path = '{$pak_player_url}';
+	var player_swf_path = 'http://static.tunefiles.com/player/pak_player';
+    var player_logo = '{$player_logo}';
+    var hq_video_file = '{$hq_vid_file}';
+    var normal_video_file = '{$normal_vid_file}';
+    var ytcode = '{$ytcode}';
+    var pre_item = "";
+    var next_item = "";
+    var splash_img = '{getThumb vdetails=$vdata size="big" num="big"}';
+    var embed_type = '{$Cbucket->configs.embed_type}';		
+	var videoid = '{$vdata.videoid}';
+	var video_url  = '{videoLink vdetails=$vdata}';
+    {literal}
+    //Now lets write an HQ video function that swaps the original video with hq
+    var video_quality = 'normal';
+    function toggleQuality(obj)
+    {
+	
+        if(video_quality=='normal')
+        {
+            video_quality = 'hq';
+            flowplayer(obj).stop();
+            flowplayer(obj).setClip({url:hq_video_file});
+            flowplayer(obj).play();
+        }
+        else
+        {
+            video_quality = 'normal';
+            flowplayer(obj).stop();
+            flowplayer(obj).setClip({url:normal_video_file});
+            flowplayer(obj).play();
+        }
+    }
+
+    function pakplayer_hq()
+    {
+        toggleQuality('the_Video_Player');
+    }
+    has_hq_function = true;
+    hq_function = pakplayer_hq;
+
+    {/literal}
+
+
+    flowplayer("the_Video_Player", {ldelim}"src":player_swf_path+"/pakplayer.swf?v=3"{rdelim}, 
+    {literal}{{/literal}
+        {if $Cbucket->configs.pak_license}
+        {/if}
+        {literal}
+        plugins: {
+            {/literal}			
+			
+			{if (!$is_embedded || $show_ads)}			
+            adsense: {ldelim}
+                //url: "http://static.tunefiles.com/player/pak_player/bigsool.adsense.swf",
+				url : player_swf_path+"/bigsool.adsense-2.0.swf",
+                timeText : 'Some text',
+				publisherId: "ca-video-pub-4660751223571148",	// this is your AFV publisher id
+                channel: "0915037484", 								
+				contentId : videoid,
+                //adTest: 'on'
+                // the plugin. Must to be removed in a live env.				
+				//adType : 'text'
+            {rdelim},						{/if}
+            			{literal}
+            controls: {
+							autoHide : "fullscreen",
+                {/literal}
+                {if $pakconfigs}
+                {foreach from=$pakconfigs item=value key=config}
+                {$config} : "{$value.default}",
+                {/foreach}
+                {else}
+                backgroundColor: "transparent",
+                backgroundGradient: "none",
+                background: "url("+player_swf_path+"/bg.png) repeat",
+                url: player_swf_path+"/flowplayer.controls.swf"
+                {/if}
+					
+                {if $youtube}
+                {rdelim},
+                youtube :
+                    {literal}
+                {
+                    url:player_swf_path+'/pakplayer.youtube.swf',
+                    enableGdata: true
+                }
+                {/literal}
+                {else}
+		
+                {rdelim} // Take this you shitty IE7
+                {/if}
+		
+                {if $Cbucket->configs.pseudostreaming=='yes' && !$youtube},lighttpd : {ldelim} url: player_swf_path+"/flowplayer.pseudostreaming.swf"{rdelim}{/if}
+                {literal}
+            },
+			
+			gatracker: {
+				url: player_swf_path+"/flowplayer.analytics-3.2.8.swf",
+				accountId: "UA-12212755-2",
+				debug : true,
+				events: {
+                all: true
+				},
+			}
+			,
+            canvas: {
+                backgroundColor: '#000000',  // For some reason we have to define this :|
+                backgroundGradient : 'none',
+               // background : '#000000 url('+splash_img+') no-repeat 50pct 50pct'
+            },
+            
+            clip:
+                {
+				{/literal}
+				 eventCategory: 'Promo Video',
+				{if $is_embedded}
+                linkUrl : video_url,	
+				linkWindow : '_blank',
+				{/if}
+                								
+				{if !$is_embedded || $show_ads}		
+					{literal}
+				ads: [
+					  {
+						 time:5,
+						 adType:'text'
+					  },
+					  {
+						 time:185,
+						 adType:'text'
+					  },
+					  {
+						 time:365,
+						 adType:'text'
+					  },
+					  {
+						 time:545,
+						 adType:'text'
+					  },
+					  {
+						 time:725,
+						 adType:'text'
+					  },
+					  {
+						 time:905,
+						 adType:'text'
+					  },
+					  {
+						 time:1085,
+						 adType:'text'
+					  }
+					  ,
+					  {
+						 time:1385,
+						 adType:'text'
+					  },
+					  {
+						 time:1685,
+						 adType:'text'
+					  },
+					  {
+						 time:1985,
+						 adType:'text'
+					  },
+					  {
+						 time:2285,
+						 adType:'text'
+					  }
+					  ,
+					  {
+						 time:2785,
+						 adType:'text'
+					  },
+					  {
+						 time:3285,
+						 adType:'text'
+					  }
+					  {/literal}
+				],				
+				{/if}				
+                {if $youtube}
+                provider : 'youtube',
+                urlResolvers: 'youtube',
+		
+                {else}
+				
+                {if $Cbucket->configs.pseudostreaming=='yes'}
+					provider: 'lighttpd',
+				{/if}
+				
+                scaling : 'fit',
+                {/if}
+		
+                
+                autoPlay :true,
+              
+		
+                {literal}
+                onStart : function()
+                {
+                    // Removing background image
+                    this.getPlugin("canvas").css({ "background" : "#000000"})	
+				{/literal}		
+						
+						
+						{if $is_embedded}
+							{literal}
+								this.getClip(0).update({autoBuffering : false});
+							{/literal}
+						{/if}
+						
+				{literal}		
+                },
+				
+				onBeforeResume : function()
+				{
+					console.log('before resume');
+					this.startBuffering();
+				},
+                onLastSecond: function()
+                {
+                    if(next_item)
+                    {
+                        if($.cookie('auto_play_playlist'))
+                            window.location = next_item;
+                    }
+                }
+            },
+	
+	
+            playlists :
+                [
+                {/literal}
+                {ldelim}
+                {if $youtube}
+                url : 'api:{$ytcode}'		
+                {else}
+                url : normal_video_file
+                {/if}
+				{rdelim}
+                {literal}
+				
+        ],
+        logo:
+            {
+            url: player_logo,
+            fullscreenOnly: false,
+            {/literal}
+            {$logo_position}
+            {literal}
+		
+        }
+    });
+
+
+    function htmlDecode(value){ 
+        return $('<div/>').html(value).text(); 
+    }
+    function updateEmbedCode(width,height,autoplay)
+    { 
+        if(autoplay=='yes')
+            autoPlayVid = 'yes';
+        else
+            autoPlayVid = 'no';
+	
+        embedPlayerWidth = width;
+        embedPlayerHeight = height;
+        autoPlayEmbed = autoplay;
+        var embedCode =  $('#embed_code').val();
+	
+        $('#embed_code').val( $('#embed_code').val().replace(/height=\"([0-9]+)\"/g,'height="'+height+'"') );
+        $('#embed_code').val( $('#embed_code').val().replace(/width=\"([0-9]+)\"/g,'width="'+width+'"') );
+        $('#embed_code').val( $('#embed_code').val().replace(/height=([0-9]+)/g,'height='+height+'') );
+        $('#embed_code').val( $('#embed_code').val().replace(/width=([0-9]+)/g,'width='+width+'') );
+        $('#embed_code').val( $('#embed_code').val().replace(/autoplay\%3D(yes|no)/g,'autoplay%3D'+autoPlayVid) );
+        $('#embed_code').val( $('#embed_code').val().replace(/autoplay\=(yes|no)/g,'autoplay='+autoPlayVid) );
+    }
+
+</script> 
+{/literal}
