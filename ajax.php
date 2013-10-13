@@ -159,7 +159,7 @@ if(!empty($mode))
 				case 'video':
 				default:
 				{
-					$id = $_POST['id'];
+					$id = mysql_clean($_POST['id']);
 					$vdo = $cbvid->get_video($id);
 					$cbvid->set_share_email($vdo);
 					$cbvid->action->share_content($vdo['videoid']);
@@ -458,7 +458,7 @@ if(!empty($mode))
 		
 		case 'add_friend':
 		{
-			$friend = $_POST['uid'];
+			$friend = mysql_clean($_POST['uid']);
 			$userid = userid();
 			
 			if($userid) {
@@ -929,10 +929,10 @@ if(!empty($mode))
 		
 		case "get_item":
 		{
-			$item_id = $_POST['ci_id'];
-			$cid = $_POST['cid'];
+			$item_id = mysql_clean($_POST['ci_id']);
+			$cid = mysql_clean($_POST['cid']);
 			$direc = mysql_clean($_POST['direction']);
-			$t = $_POST['type'];
+			$t = mysql_clean($_POST['type']);
 			
 			switch($t)
 			{
@@ -977,10 +977,10 @@ if(!empty($mode))
 		case "more_items":
 		case "moreItems":
 		{
-			$cid = $_POST['cid'];
-			$page = $_POST['page'];				
+			$cid = mysql_clean($_POST['cid']);
+			$page = mysql_clean($_POST['page']);				
 			$newPage = $page+1;
-			$type = $_POST['type'];
+			$type = mysql_clean($_POST['type']);
 			$limit = create_query_limit($page,COLLIP);
 			$order = tbl("collection_items").".ci_id DESC";
 			
